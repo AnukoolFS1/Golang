@@ -1,14 +1,14 @@
 package main
 
 import (
-	// "example.com/greetings"
+	"example.com/greetings"
 	"fmt"
 )
 
 func main() {
 	// Get a greeting message and print it.
-	// message := greetings.Hello("Gladys")
-	// fmt.Println(message)
+	text := greetings.Hello("Gladys")
+	fmt.Println(text)
 	message := WheelWonder("Anukool")
 
 	fmt.Println(message)
