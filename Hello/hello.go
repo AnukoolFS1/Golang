@@ -1,9 +1,15 @@
 package main
 
-import "fmt"
-func printf (a string) {
-    fmt.Println(a)
-}
+import (
+	// "example.com/greetings"
+	"fmt"
+)
+
 func main() {
-    printf("H, Anukool")
+	// Get a greeting message and print it.
+	// message := greetings.Hello("Gladys")
+	// fmt.Println(message)
+	message := WheelWonder("Anukool")
+
+	fmt.Println(message)
 }
