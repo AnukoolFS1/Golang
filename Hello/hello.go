@@ -1,6 +1,6 @@
 package main
 
-import (
+import (// just why does it not use comma to seperate imports 
 	"example.com/greetings"
 	"fmt"
 	"log"
