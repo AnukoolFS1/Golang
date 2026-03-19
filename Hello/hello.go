@@ -11,5 +11,6 @@ func main() {
 	fmt.Println(text)
 	message := WheelWonder("Anukool")
 
-	fmt.Println(message)
+	fmt.Printf("This is the %v", message)
+	fmt.Println(greetings.AnyNumer)
 }
