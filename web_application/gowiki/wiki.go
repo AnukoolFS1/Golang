@@ -1,15 +1,15 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+// import (
+// 	"fmt"
+// 	"os"
+// )
 
-type Page struct {
-	Title string
-	Body []byte
-}
+// type Page struct {
+// 	Title string
+// 	Body []byte
+// }
 
-func main() {
+// func main() {
 
-}
+// }
