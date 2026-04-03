@@ -6,7 +6,8 @@ func Sqrt(x float64) float64 {
     z := 1.0
     for {
         next := z - (z*z - x) / (2 * z)
-        if (next - z) < 1e-10 {  // close enough
+		fmt.Println(abs(next-z),",", next,",", z,",")
+        if abs(next - z) < 1e-10 {  // close enough
             z = next
             break
         }
