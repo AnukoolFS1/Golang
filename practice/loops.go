@@ -25,5 +25,6 @@ func abs(x float64) float64 {
 }
 
 func main() {
-    fmt.Println(Sqrt(25))
+    // fmt.Println(Sqrt(25))
+    anotherFor()
 }
