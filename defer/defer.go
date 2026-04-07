@@ -8,9 +8,10 @@ func practiceDefer() {
 		fmt.Println("working...")
 	}
 	defer deferingThing()
+	fmt.Println("Hello")
 }
 
 func main() {
-	practiceDefer()
+	defer practiceDefer()
 	fmt.Println("initiating...")
 }
