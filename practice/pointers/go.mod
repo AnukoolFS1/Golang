@@ -1,0 +1,3 @@
+module anukool.practice/pointers
+
+go 1.26.1
