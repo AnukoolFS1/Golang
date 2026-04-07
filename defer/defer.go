@@ -11,7 +11,14 @@ func practiceDefer() {
 	fmt.Println("Hello")
 }
 
+func deferLIFO() {
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i)
+	}
+}
+
 func main() {
 	defer practiceDefer()
-	fmt.Println("initiating...")
+	fmt.Println("initiating... π")
+	deferLIFO()
 }
