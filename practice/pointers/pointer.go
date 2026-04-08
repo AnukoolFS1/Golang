@@ -7,6 +7,19 @@ func PointerUnderstanding() {
 	p := &i
 
 	fmt.Println(p)
+	fmt.Println(*p)
+
+	*p = *p - 20
+
+	fmt.Println(i)
+	fmt.Println(*p)
+
+
+	// their respective type
+	fmt.Printf("Type of val: %T\n", i) // Output: int
+	fmt.Printf("Type of ptr: %T\n", p) // Output: *int
+
+	fmt.Println(1 << 63 -1)
 }
 
 func main() {
