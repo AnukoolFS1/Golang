@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func PointerUnderstanding() {
 	i := 42
@@ -21,16 +24,28 @@ func PointerUnderstanding() {
 	fmt.Println(1<<63 - 1)
 }
 
-func ReacievePointer(value *int) *int {
+func returnPointer() int {
+	var value = 1
 	fmt.Println(value)
-	*value += 1
+	value += 1
 	return value
 }
 
 func main() {
-	i := 42
+	// i := 42
 
-	fmt.Println(ReacievePointer(&i))
+	// fmt.Println(*returnPointer())
+	returnedValue := returnPointer()
+
+	fmt.Printf("%T\n", returnedValue)
+
+	var x int = 42
+	var y int8 = 100
+	fmt.Println(reflect.TypeOf(x))        // int
+	fmt.Println(reflect.TypeOf(y))        // int
+	fmt.Println(reflect.TypeOf(x).Size()) // 8  (bytes)
+	fmt.Println(reflect.TypeOf(y).Size()) // 8  (bytes)
+
 
 	// p := &i         // point to i
 	// fmt.Println(*p) // read i through the pointer
