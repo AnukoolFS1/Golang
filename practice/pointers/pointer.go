@@ -14,16 +14,23 @@ func PointerUnderstanding() {
 	fmt.Println(i)
 	fmt.Println(*p)
 
-
 	// their respective type
 	fmt.Printf("Type of val: %T\n", i) // Output: int
 	fmt.Printf("Type of ptr: %T\n", p) // Output: *int
 
-	fmt.Println(1 << 63 -1)
+	fmt.Println(1<<63 - 1)
+}
+
+func ReacievePointer(value *int) *int {
+	fmt.Println(value)
+	*value += 1
+	return value
 }
 
 func main() {
-	// i, j := 42, 2701
+	i := 42
+
+	fmt.Println(ReacievePointer(&i))
 
 	// p := &i         // point to i
 	// fmt.Println(*p) // read i through the pointer
@@ -33,5 +40,5 @@ func main() {
 	// p = &j         // point to j
 	// *p = *p / 37   // divide j through the pointer
 	// fmt.Println(j) // see the new value of j
-	PointerUnderstanding()
+	// PointerUnderstanding()
 }
