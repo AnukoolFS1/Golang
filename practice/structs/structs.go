@@ -5,13 +5,16 @@ import "fmt"
 func main() {
 
 	type Vertex struct {
-		X int
+		X string
 		Y int
 	}
 
-	var value = Vertex{1, 2}
+	var value = Vertex{"1", 2}
 
-	fmt.Printf("v%", value)
+	var value2 = Vertex{"anukool", 3}
+
+	fmt.Printf("%+v\n", value)
+	fmt.Printf("%v\n", value2)
 
 }
 
