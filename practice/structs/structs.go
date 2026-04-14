@@ -1,16 +1,18 @@
 package main
 
+import "fmt"
 
-// import "fmt"
+func main() {
 
-// func main() {
+	type Vertex struct {
+		X int
+		Y int
+	}
 
-// 	struct Person = {
-// 		name string
-// 		age int8
-// 	}
+	var value = Vertex{1, 2}
 
-// 	var person1 = Person{name: "Anukool", age:}
-// }
+	fmt.Printf("v%", value)
+
+}
 
 // need to comeback here
