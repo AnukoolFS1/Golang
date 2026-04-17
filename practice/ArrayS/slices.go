@@ -23,5 +23,6 @@ func main() {
 
 	// fmt.Printf("%v\n", slicedArr1)
 	// fmt.Printf("%v\n", slicedArr2)
-	testingSlice()
+	// testingSlice()
+	SlicesOfSlice()
 }
