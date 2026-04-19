@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// defining array in GO 
+// defining array in GO
 // var variableName = [length]type{el, el1, el2...} /// type of this is [l]T
 
 func testingSlice() {
@@ -27,8 +27,21 @@ func main() {
 	SlicesOfSlice()
 	fmt.Println(nil)
 
+	s := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Println(s)
 
 }
+
 // func main() {
 // 	pow := make([]int, 10)
 // 	for i := range pow {
