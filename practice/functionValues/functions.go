@@ -26,7 +26,7 @@ func closureFunction() func(int) int {
 var x, y int = testing()
 
 func main() {
-	inc := closureFunction() // now somewhere behind the inc there is value running
+	inc := closureFunction() // now somewhere in memory the sum variable has shifted to heap
 
 	value1 := inc(5)
 	value2 := inc(2)
