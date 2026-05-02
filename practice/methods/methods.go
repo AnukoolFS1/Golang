@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 // type Vertex struct {
@@ -13,13 +12,10 @@ import (
 // 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 // }
 
-type MyFloat float64
+type MyFloat string
 
-func (f MyFloat) Abs() float64 {
-	if f < 0 {
-		return float64(-f)
-	}
-	return float64(f)
+func (f MyFloat) Abs() MyFloat {
+	return "Hello " + f
 }
 
 func main() {
@@ -28,7 +24,7 @@ func main() {
 	// fmt.Println(v.Abs())
 
 
-	f := MyFloat(-math.Sqrt2)
+	f := MyFloat("User1")
 	fmt.Println(f.Abs())
 
 }
