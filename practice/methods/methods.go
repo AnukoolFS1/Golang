@@ -12,10 +12,10 @@ import (
 // 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 // }
 
-type MyFloat string
+type MyFloat int
 
-func (f MyFloat) Abs() MyFloat {
-	return "Hello " + f
+func (f MyFloat) Square() MyFloat {
+	return f * f
 }
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	// fmt.Println(v.Abs())
 
 
-	f := MyFloat("User1")
-	fmt.Println(f.Abs())
+	f := MyFloat(3)
+	fmt.Println(f.Square())
 
 }
