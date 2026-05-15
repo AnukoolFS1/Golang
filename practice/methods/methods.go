@@ -14,8 +14,8 @@ import (
 
 type MyFloat int
 
-func (f MyFloat) Square() MyFloat {
-	return f * f
+func (f MyFloat) Square(sum int) MyFloat {
+	return (f * f) + MyFloat(sum)
 }
 
 func main() {
@@ -25,6 +25,6 @@ func main() {
 
 
 	f := MyFloat(3)
-	fmt.Println(f.Square())
+	fmt.Println(f.Square(5))
 
 }
