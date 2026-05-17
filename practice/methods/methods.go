@@ -29,11 +29,13 @@ func (v Vertex) SeeResults() Vertex {
 	return v
 }
 
-func (v *Vertex) ChangeResults() Vertex {
+func (v *Vertex) ChangeResults() *Vertex {
 	v.x = 20
 	v.y = 21
 
-	return *v
+	fmt.Println(v, "from ChangeResults")
+	fmt.Println(*v, "from ChangeResults with star")
+	return v
 }
 
 func main() {
@@ -45,14 +47,14 @@ func main() {
 
 	var vertex = Vertex{1, 2}
 
-	fmt.Println(vertex)
+	fmt.Println(vertex, "vertex")
 
 	var exp1 = vertex.SeeResults()
-	fmt.Println(exp1)
-	fmt.Println(vertex)
+	fmt.Println(exp1, "exp1")
+	fmt.Println(vertex, "vertex")
 
 	var exp2 = vertex.ChangeResults()
-	fmt.Println(exp2)
-	fmt.Println(vertex)
+	fmt.Println(exp2, "exp2")
+	fmt.Println(vertex, "vertex")
 
 }
