@@ -71,8 +71,22 @@ func main() {
 	i = &T{"hello"}
 	describe(i)
 	i.M()
+
+
+	var inter interface{} // interface can be replaced by any. (default)
+
+	inter = 43
+	secondaryDescribe(inter)
+
+	inter = "Hello"
+
+	secondaryDescribe(inter)
 }
 
 func describe(i I) {
 	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+func secondaryDescribe(i interface{}){
+	fmt.Printf("(%v, %T)\n", i,i)
 }
