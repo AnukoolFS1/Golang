@@ -5,14 +5,14 @@ import "fmt"
 // defining array in GO
 // var variableName = [length]type{el, el1, el2...} /// type of this is [l]T
 
-func testingSlice() {
-	slicedata := []int{1, 2, 3, 4, 5, 6}
-	slicePointer := &slicedata
+// func testingSlice() {
+// 	slicedata := []int{1, 2, 3, 4, 5, 6}
+// 	slicePointer := &slicedata
 
-	fmt.Printf("slicePointer %p\n", slicePointer)
+// 	fmt.Printf("slicePointer %p\n", slicePointer)
 
-	fmt.Printf("slicePointer %p\n", slicePointer)
-}
+// 	fmt.Printf("slicePointer %p\n", slicePointer)
+// }
 
 func main() {
 
