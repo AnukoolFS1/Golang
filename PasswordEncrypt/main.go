@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-	// "errors"
 	"fmt"
 	"os"
 )
@@ -14,10 +12,51 @@ type Entry struct {
 }
 
 func main() {
-	// entries := basic()
+	TerminalArgs := os.Args
+	var result string
+	var err error
 
-	// fmt.Println()
-	// result, err := saveData(entries)
+	if len(TerminalArgs) < 2 {
+		fmt.Println("Usage:")
+		fmt.Println("add [service] [username] [password]")
+		fmt.Println("get [username]")
+		fmt.Println("list")
+		return
+	}
+
+	switch TerminalArgs[1] {
+	case "add":
+		if len(TerminalArgs) < 5 {
+			fmt.Println("Please provide:")
+			fmt.Println("add [service] [username] [password]")
+			return
+		}
+		fmt.Println("Adding data, Please Wait...")
+		result, err = add(Entry{TerminalArgs[2], TerminalArgs[3], TerminalArgs[4]})
+
+	case "get":
+		fmt.Println("Retrieving data, Please Wait...")
+		userdata, err := Retrieve(TerminalArgs[2])
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(userdata)
+
+	case "list":
+		fmt.Println("You want to list")
+		entries := List()
+		fmt.Println(entries)
+
+	default:
+		fmt.Println("Command not found")
+
+	}
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(result)
+	// result, err := SaveData(entries)
 
 	// if err != nil {
 	// 	panic(err)
@@ -25,61 +64,19 @@ func main() {
 	// 	fmt.Println(result)
 	// }
 
-	fmt.Println(RetrieveData())
-
+	// fmt.Println(RetrieveData())
 }
 
-func basic() []Entry {
-	var entries []Entry
+func (entry Entry) String() string {
 
-	entry := Entry{
-		"Git", "Anukool", "123456",
-	}
-
-	entries = append(entries, entry)
-
-	fmt.Println(entries)
-
-	var service string
-	var username string
-	var password string
-
-	fmt.Println("Servie: ")
-	fmt.Scanln(&service)
-
-	fmt.Println("Username: ")
-	fmt.Scanln(&username)
-
-	fmt.Println("Password: ")
-	fmt.Scanln(&password)
-
-	entry = Entry{Service: service, Username: username, Password: password}
-	entries = append(entries, entry)
-
-	return entries
+	return fmt.Sprintf("Username: %v\nService: %v\nPassword: %v\n", entry.Username, entry.Service, entry.Password)
 }
 
-func saveData(entries []Entry) (string, error) {
-	data, _ := json.Marshal(entries)
+func (entry DuplicateTypeEntry) String() string {
 
-	err := os.WriteFile("password.json", data, 0644)
-
-	if err != nil {
-		return "", err
-	}
-	return "File has been saved", nil //errors.New("Something wrong")
+	return fmt.Sprintf(
+		"\nUsername: %s | Service: %s | Password: %s",
+		entry.Username,
+		entry.Service,
+		entry.Password)
 }
-
-func RetrieveData() []Entry {
-	data, err := os.ReadFile("password.json")
-
-	var entries []Entry
-	json.Unmarshal(data, &entries)
-
-	if err != nil {
-		panic(err)
-	}
-	return entries
-}
-
-
