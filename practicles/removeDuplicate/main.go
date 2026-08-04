@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func removeDuplicate[T comparable](s []T) []T {
 	elements := make(map[T]struct{})
@@ -21,3 +23,5 @@ func main() {
 
 	fmt.Println(result)
 }
+
+
