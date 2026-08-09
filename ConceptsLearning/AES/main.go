@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	key := []byte("1234567890123456789012345678901")
+	key := []byte("12345678901234567890123456789012")
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
