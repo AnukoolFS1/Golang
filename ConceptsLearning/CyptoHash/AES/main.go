@@ -17,3 +17,17 @@ func main() {
 	fmt.Println(block)
 	fmt.Println(block.BlockSize())
 }
+
+/*
+Security Hashes
+
+For passwords, we use cryptographic hash functions like:
+
+SHA-256
+SHA-512
+bcrypt
+Argon2
+scrypt
+
+These are designed with special security properties.
+*/
