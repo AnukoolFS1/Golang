@@ -1,4 +1,4 @@
-module anukool.practice/methods
+module anukool/passwordEncrpyt
 
 go 1.26.1
 
