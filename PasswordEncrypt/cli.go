@@ -25,11 +25,7 @@ func CheckArgs(args []string) bool {
 		return false
 	}
 
-	_, CommandExists := Commands[args[1]]
-
-	fmt.Println(CommandExists)
-
-	if !CommandExists {
+	if _, CommandExists := Commands[args[1]]; !CommandExists {
 		fmt.Println("Command not found")
 		return false
 	}

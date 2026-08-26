@@ -5,7 +5,7 @@ import (
 )
 
 func Add(NewEntry Entry, Mpassword string) (string, error) {
-
+	
 	entries, salt, err := LoadEntries(Mpassword)
 	if err != nil {
 		return "", err
