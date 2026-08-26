@@ -4,20 +4,20 @@ import (
 	"errors"
 )
 
-func Add(entry Entry, Mpassword string) (string, error) {
+func Add(NewEntry Entry, Mpassword string) (string, error) {
 
 	entries, salt, err := LoadEntries(Mpassword)
 	if err != nil {
 		return "", err
 	}
 
-	for _, users := range entries {
-		if users.Username == entry.Username {
-			return "", errors.New("UserName already exists \nPlease try with another username")
+	for _, entry := range entries {
+		if entry.Service == NewEntry.Service {
+			return "", errors.New("Service already exists \nPlease try with another service")
 		}
 	}
 
-	entries = append(entries, entry)
+	entries = append(entries, NewEntry)
 
 	_, err = SaveEntries(entries, DeriveKey(Mpassword, salt), salt)
 	if err != nil {
@@ -27,14 +27,14 @@ func Add(entry Entry, Mpassword string) (string, error) {
 	return "Entry has been added.", nil
 }
 
-func Retrieve(username string, Mpassword string) (Entry, error) {
+func Retrieve(service string, Mpassword string) (Entry, error) {
 	entries, _, err := LoadEntries(Mpassword)
 	if err != nil {
 		return Entry{}, err
 	}
 
 	for _, entry := range entries {
-		if entry.Username == username {
+		if entry.Service == service {
 			return entry, nil
 		}
 	}
@@ -50,7 +50,7 @@ func List(Mpassword string) ([]Entry, error) {
 	return entries, nil
 }
 
-func UpdatePassword(username, password, Mpassword string) (string, error) {
+func UpdatePassword(service, password, Mpassword string) (string, error) {
 	entries, salt, err := LoadEntries(Mpassword)
 	if err != nil {
 		return "", err
@@ -60,7 +60,7 @@ func UpdatePassword(username, password, Mpassword string) (string, error) {
 	found := false
 
 	for _, entry := range entries {
-		if username == entry.Username {
+		if service == entry.Service {
 			entry.Password = password
 			NewEntries = append(NewEntries, entry)
 			found = true
@@ -81,7 +81,7 @@ func UpdatePassword(username, password, Mpassword string) (string, error) {
 	return "Password has been changed", err
 }
 
-func DeleteUser(username string, Mpassword string) (string, error) {
+func DeleteUser(service string, Mpassword string) (string, error) {
 	entries, salt, err := LoadEntries(Mpassword)
 	if err != nil {
 		return "", err
@@ -91,7 +91,7 @@ func DeleteUser(username string, Mpassword string) (string, error) {
 	found := false
 
 	for _, entry := range entries {
-		if username == entry.Username {
+		if service == entry.Service {
 			found = true
 			continue
 		}

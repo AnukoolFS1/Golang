@@ -17,7 +17,7 @@ func HandleAdd(args []string, password string) {
 
 func HandleGet(args []string, password string) {
 	if len(args) < 2 {
-		SuccessOrError("", errors.New("Please provide username:\nget [username]"))
+		SuccessOrError("", errors.New("Please provide service:\nget [service]"))
 		return
 	}
 	fmt.Println("Retrieving data, Please Wait...")
@@ -27,7 +27,7 @@ func HandleGet(args []string, password string) {
 
 func HandleUpdate(args []string, password string) {
 	if len(args) < 4 {
-		fmt.Println("Please provide a username to delete entry.")
+		fmt.Println("Please provide a service to delete entry.")
 	} else {
 		result, err := UpdatePassword(args[2], args[3], password)
 		SuccessOrError(result, err)
@@ -36,7 +36,7 @@ func HandleUpdate(args []string, password string) {
 
 func HandleDelete(args []string, password string) {
 	if len(args) < 3 {
-		fmt.Println("Please provide a username to delete entry.")
+		fmt.Println("Please provide a service to delete entry.")
 	} else {
 		result, err := DeleteUser(args[2], password)
 		SuccessOrError(result, err)
