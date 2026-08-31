@@ -32,3 +32,6 @@
 *.psd
 *.ai
 *.xcf
+
+PasswordManager/
+ai-agent-learning/
