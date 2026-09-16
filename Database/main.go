@@ -29,3 +29,5 @@ func main() {
 	fmt.Println("Postgres is connected")
 	fmt.Println("Table is created")
 }
+// "NAMES IDENTIFIER"
+// 'String Values'
