@@ -3,31 +3,44 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
+	"log"
 )
 
-var ConnectionString = "postgres://postgres:bookingstore@localhost:5432/newdatabase"
+var ConnectionString = "postgres://postgres:bookingstore@localhost:5432/bookstore"
 
 func main() {
 	ctx := context.Background()
 
-	conn, err := pgx.Connect(ctx, ConnectionString)
+	db, err := pgxpool.New(ctx, ConnectionString)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	_, err = conn.Exec(ctx, `DROP TABLE newtable;`)
+	defer db.Close()
 
+	err = db.Ping(ctx)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	// fmt.Println(string(value))
+	fmt.Println("Connected to PostgreSQL")
 
-	defer conn.Close(ctx)
+	_, err = db.Exec(
+		ctx,
+		`INSERT INTO books (title, author, price, stock)
+		 VALUES ($2, $1, $3, $4)`,
+		"The Go Programming Language",
+		"Alan Donovan",
+		799.00,
+		10,
+	)
 
-	fmt.Println("Postgres is connected")
-	fmt.Println("Table is created")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Book inserted")
 }
 // "NAMES IDENTIFIER"
 // 'String Values'
