@@ -26,21 +26,40 @@ func main() {
 
 	fmt.Println("Connected to PostgreSQL")
 
-	_, err = db.Exec(
+	// _, err = db.Exec(
+	// 	ctx,
+	// 	`INSERT INTO books (title, author, price, stock)
+	// 	 VALUES ($2, $1, $3, $4)`,
+	// 	"The Go Programming Language",
+	// 	"Alan Donovan",
+	// 	799.00,
+	// 	10,
+	// )
+
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	// fmt.Println("Book inserted")
+	var bookID int
+
+	err = db.QueryRow(
 		ctx,
 		`INSERT INTO books (title, author, price, stock)
-		 VALUES ($2, $1, $3, $4)`,
+     VALUES ($1, $2, $3, $4)
+     RETURNING id`,
 		"The Go Programming Language",
 		"Alan Donovan",
 		799.00,
 		10,
-	)
+	).Scan(&bookID)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Book inserted")
+	fmt.Println("Inserted book with ID:", bookID)
 }
+
 // "NAMES IDENTIFIER"
 // 'String Values'
