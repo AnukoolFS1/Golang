@@ -19,7 +19,7 @@ func main() {
 
 	defer db.Close()
 
-	err = db.Ping(ctx)
+	err = db.Ping(ctx) // Sends a lightweight query to the database and waits for a response, just to confirm the connection actually works.
 	if err != nil {
 		log.Fatal(err)
 	}
