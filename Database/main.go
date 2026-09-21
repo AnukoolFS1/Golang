@@ -48,10 +48,10 @@ func main() {
 		`INSERT INTO books (title, author, price, stock)
      VALUES ($1, $2, $3, $4)
      RETURNING id`,
-		"The Go Programming Language",
-		"Alan Donovan",
-		799.00,
-		10,
+		"Harry Potter",
+		"JK Rowling",
+		89.00,
+		50,
 	).Scan(&bookID)
 
 	if err != nil {
@@ -59,6 +59,30 @@ func main() {
 	}
 
 	fmt.Println("Inserted book with ID:", bookID)
+
+	var (
+		id int
+		title string
+		author string
+		price float32
+		stock int
+	)
+
+	err = db.QueryRow(
+		ctx,
+		`SELECT id, title, author, price, stock FROM books WHERE id = $1;`,
+		bookID,
+	).Scan(&id, &title, &author, &price, &stock)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(id)
+	fmt.Println(title)
+	fmt.Println(author)
+	fmt.Println(price)
+	fmt.Println(stock)
 }
 
 // "NAMES IDENTIFIER"
