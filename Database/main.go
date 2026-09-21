@@ -41,24 +41,24 @@ func main() {
 	// }
 
 	// fmt.Println("Book inserted")
-	var bookID int
+	// var bookID int
 
-	err = db.QueryRow(
-		ctx,
-		`INSERT INTO books (title, author, price, stock)
-     VALUES ($1, $2, $3, $4)
-     RETURNING id`,
-		"Harry Potter",
-		"JK Rowling",
-		89.00,
-		50,
-	).Scan(&bookID)
+	// err = db.QueryRow(
+	// 	ctx,
+	// 	`INSERT INTO books (title, author, price, stock)
+    //  VALUES ($1, $2, $3, $4)
+    //  RETURNING id`,
+	// 	"Harry Potter",
+	// 	"JK Rowling",
+	// 	89.00,
+	// 	50,
+	// ).Scan(&bookID)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	fmt.Println("Inserted book with ID:", bookID)
+	// fmt.Println("Inserted book with ID:", bookID)
 
 	var (
 		id int
@@ -70,8 +70,8 @@ func main() {
 
 	err = db.QueryRow(
 		ctx,
-		`SELECT id, title, author, price, stock FROM books WHERE id = $1;`,
-		bookID,
+		`SELECT id, title, author, price, stock FROM books WHERE id = $1`,
+		6,
 	).Scan(&id, &title, &author, &price, &stock)
 
 	if err != nil {
