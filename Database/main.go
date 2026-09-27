@@ -86,7 +86,11 @@ func main() {
 
 	row, err := db.Query(ctx, "SELECT id, title, author, price, stock FROM books;")
 
+	fmt.Println("q", row.FieldDescriptions())
+
 	for row.Next() {
+
+		fmt.Println(row.Values())
 
 		var (
 			id     int
