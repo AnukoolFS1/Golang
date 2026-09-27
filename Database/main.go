@@ -46,8 +46,8 @@ func main() {
 	// err = db.QueryRow(
 	// 	ctx,
 	// 	`INSERT INTO books (title, author, price, stock)
-    //  VALUES ($1, $2, $3, $4)
-    //  RETURNING id`,
+	//  VALUES ($1, $2, $3, $4)
+	//  RETURNING id`,
 	// 	"Harry Potter",
 	// 	"JK Rowling",
 	// 	89.00,
@@ -61,11 +61,11 @@ func main() {
 	// fmt.Println("Inserted book with ID:", bookID)
 
 	var (
-		id int
-		title string
+		id     int
+		title  string
 		author string
-		price float32
-		stock int
+		price  float32
+		stock  int
 	)
 
 	err = db.QueryRow(
@@ -83,6 +83,34 @@ func main() {
 	fmt.Println(author)
 	fmt.Println(price)
 	fmt.Println(stock)
+
+	row, err := db.Query(ctx, "SELECT id, title, author, price, stock FROM books;")
+
+	for row.Next() {
+
+		var (
+			id     int
+			title  string
+			author string
+			price  float32
+			stock  int
+		)
+
+		err := row.Scan(&id, &title, &author, &price, &stock)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Printf("id: %v, title: %v, author: %v, price: %v, stock: %v \n", id, title, author, price, stock)
+	}
+
+	if err := row.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	defer row.Close()
+
 }
 
 // "NAMES IDENTIFIER"
