@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-
+	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -70,7 +70,7 @@ func (r *BookRepository) GetBook(ctx context.Context, id int) (Book, error) {
 	)
 
 	if err != nil {
-		return Book{}, err
+		return Book{}, fmt.Errorf("GetBook failed: %w", err)
 	}
 
 	return book, nil
@@ -110,21 +110,21 @@ func (r *BookRepository) GetBooks(ctx context.Context) ([]Book, error) {
 	// books = append(books, book)
 
 	for rows.Next() {
-	    var book Book
+		var book Book
 
-	    err := rows.Scan(
-	        &book.ID,
-	        &book.Title,
-	        &book.Author,
-	        &book.Price,
-	        &book.Stock,
-	    )
+		err := rows.Scan(
+			&book.ID,
+			&book.Title,
+			&book.Author,
+			&book.Price,
+			&book.Stock,
+		)
 
-	    if err != nil {
-	        return nil, err
-	    }
+		if err != nil {
+			return nil, err
+		}
 
-	    books = append(books, book)
+		books = append(books, book)
 	}
 
 	if err := rows.Err(); err != nil {

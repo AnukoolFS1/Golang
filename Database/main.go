@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"log"
+
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 
 	"Database/repository"
 )
@@ -43,34 +46,36 @@ func main() {
 
 	// fmt.Println("Inserted book with ID:", bookID)
 
-	book, err := bookRepo.GetBook(ctx, 6)
+	book, err := bookRepo.GetBook(ctx, 12)
 
-	if err != nil {
+	if errors.Is(err, pgx.ErrNoRows) {
+		fmt.Println("Book not found.", err)
+	} else if err != nil {
 		log.Fatal(err)
+	} else {	
+		fmt.Println(book.ID,"1")
+		fmt.Println(book.Title)
+		fmt.Println(book.Author)
+		fmt.Println(book.Price)
+		fmt.Println(book.Stock)
 	}
 
-	fmt.Println(book.ID)
-	fmt.Println(book.Title)
-	fmt.Println(book.Author)
-	fmt.Println(book.Price)
-	fmt.Println(book.Stock)
+	// books, err := bookRepo.GetBooks(ctx)
 
-	books, err := bookRepo.GetBooks(ctx)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for _, book := range books {
-		fmt.Printf(
-			"id: %d, title: %s, author: %s, price: %.2f, stock: %d\n",
-			book.ID,
-			book.Title,
-			book.Author,
-			book.Price,
-			book.Stock,
-		)
-	}
+	// for _, book := range books {
+	// 	fmt.Printf(
+	// 		"id: %d, title: %s, author: %s, price: %.2f, stock: %d\n",
+	// 		book.ID,
+	// 		book.Title,
+	// 		book.Author,
+	// 		book.Price,
+	// 		book.Stock,
+	// 	)
+	// }
 
 }
 
